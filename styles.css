@@ -1,0 +1,90 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  background-color: #282333;
+  padding-top: 12vh;
+  overflow: hidden;
+
+  /* background-color: #1c1c1c;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='60' viewBox='0 0 12 12'%3E%3Ctext x='0' y='10' font-size='8' fill='%23fff082'%3E☾%3C/text%3E%3C/svg%3E"); */
+}
+
+.deck {
+  display: flex;
+  perspective: 1200px;
+  perspective-origin: 50% 50%;
+  margin-left: 160px;
+}
+
+.card {
+  position: relative;
+  width: 253px;
+  height: 450px;
+  color: #fff082;
+  background-color: #161515;
+  border: 8px solid #fff082;
+  border-radius: 20px;
+  border-style: double;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 14rem;
+  transform-style: preserve-3d;
+  transition: all 0.5s;
+
+  cursor: pointer;
+
+  transform: translateY(0rem);
+  margin-left: -160px;
+
+  rotate: 15deg;
+}
+
+/* .card:nth-child(odd) {
+    rotate: -3deg;
+} */
+.flipped {
+  transform: rotateY(180deg);
+}
+
+.card-front,
+.card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
+  transition: all 0.5s;
+}
+
+.card-back img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 20px;
+}
+
+.current {
+  position: absolute;
+  left: calc(50% - 45px);
+  transform: translateX(-0%) translateY(-25rem) translateZ(200px);
+  z-index: 1000;
+  rotate: 0deg;
+}
+
+.deck.shuffle {
+  animation: shuffle 1s forwards;
+}
+
+@keyframes shuffle {
+  0% {
+    transform: translateX(-500px) rotate(15deg);
+  }
+  100% {
+    transform: translateX(0) rotate(0deg);
+  }
+}
